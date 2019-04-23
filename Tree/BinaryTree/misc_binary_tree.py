@@ -37,9 +37,9 @@ class BinaryTree:
             self.bottomViewLeftToRight(root.left)
             self.bottomViewLeftToRight(root.right)
 
-    def getLevelOfNode(self, root, key):
+    def getLevelOfNode(self, root, key, level=1):
         if root == None:
             return 0
         if root.data == key:
-            return 1
-        return 1 + self.getLevelOfNode(root.left, key) + self.getLevelOfNode(root.right, key)
+            return level
+        return self.getLevelOfNode(root.left, key, level+1) or self.getLevelOfNode(root.right, key, level+1)
